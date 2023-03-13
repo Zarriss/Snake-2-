@@ -99,30 +99,8 @@ def game_loop():
     if new_head[0] < - WIDTH / 2 or new_head[0] > WIDTH / 2 \
        or new_head[1] < - HEIGHT / 2 or new_head[1] > HEIGHT / 2 or new_head2[0] < - WIDTH / 2 or new_head2[0] > WIDTH / 2 \
        or new_head2[1] < - HEIGHT / 2 or new_head2[1] > HEIGHT / 2:
-       #messagebox.showinfo("Game Over",f"{winner} win! Score:  {winscore}   {loser} lose! Score: {losescore}")
-       master = tk.Tk()
-       master.eval('tk::PlaceWindow . center')
-       master.title("GAME OVER!")
-       master.geometry("490x120")
-       tk.Label(master, justify=CENTER,  
-                text=f"{winner} wins with score = {winscore}", font=('MS Serif', 20, 'bold') ).grid(row=0, column=1)
-       tk.Label(master, justify=CENTER, 
-                text=f"{loser} loses with score = {losescore}", font=('MS Serif', 20, 'bold')).grid(row=1, column=1)
-
-
-
-       tk.Button(master, 
-                text='Quit', font=('MS Serif', 10, 'bold'), 
-                command=quit and master.quit).grid(row=3, 
-                                            column=0, 
-                                            sticky=tk.W, 
-                                            pady=4)
-       tk.Button(master, justify=LEFT, 
-                text='Continue',font=('MS Serif', 10, 'bold'), 
-                command=reset()).grid(row=3, 
-                                        column=3, 
-                                        sticky=tk.W, 
-                                        pady=4)
+       messagebox.showinfo("Game Over",f"{winner} win! Score:  {winscore}   {loser} lose! Score: {losescore}")
+       reset()
     else: #Pievieno jauno galvu
 
         #Pievieno jauno galvu
@@ -169,12 +147,12 @@ def food_collision():
         return True
     if get_distance(snake[-1], food_pos1) < 20:
         score1 += 2
-        food_pos1 = get_random_food_pos()
+        food_pos1 = get_random_food_pos1()
         food1.goto(food_pos1)
         return True
     if get_distance(snake[-1], food_pos2) < 20:
         score1 += 3
-        food_pos2 = get_random_food_pos()
+        food_pos2 = get_random_food_pos2()
         food2.goto(food_pos2)
     return False
 
@@ -187,13 +165,13 @@ def food_collision2():
         food.goto(food_pos)
         return True
     if get_distance(snake2[-1], food_pos1) < 20:
-        score2 += 1
-        food_pos1 = get_random_food_pos()
+        score2 += 2
+        food_pos1 = get_random_food_pos1()
         food1.goto(food_pos1)
         return True
     if get_distance(snake2[-1], food_pos2) < 20:
-        score2 += 1
-        food_pos2 = get_random_food_pos()
+        score2 += 3
+        food_pos2 = get_random_food_pos2()
         food2.goto(food_pos2)
     return False
 
